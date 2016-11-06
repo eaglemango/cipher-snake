@@ -21,4 +21,3 @@ class Atbash:
         return self.message.translate(abc)
 
 # print(Atbash('This message was encrypted using atbash.').encrypt())
-
