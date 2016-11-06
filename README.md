@@ -1,2 +1,2 @@
-# crypy
-Cryptography Toolkit for analysing, encrypting and decrypting texts
+# GoCrypt
+Cryptography Toolkit for analysing, encrypting and decrypting texts.
