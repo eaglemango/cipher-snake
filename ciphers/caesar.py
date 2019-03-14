@@ -3,7 +3,7 @@ default_alphabets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
                      "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"]
 
 
-class Caesar:
+class Cipher:
     def __init__(self, message, alphabets=None):
         if alphabets is None:
             alphabets = default_alphabets
