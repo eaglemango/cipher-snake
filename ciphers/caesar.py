@@ -3,30 +3,21 @@ default_alphabets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
                      "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"]
 
 
-class Cipher:
-    def __init__(self, message, alphabets=None):
-        if alphabets is None:
-            alphabets = default_alphabets
+def encrypt(message, shift):
+    abc = {}
 
-        self.message = message
-        self.alphabets = alphabets
+    for alphabet in default_alphabets:
+        shift %= len(alphabet)
+        abc.update(str.maketrans(alphabet, alphabet[shift:] + alphabet[:shift]))
 
-    def encrypt(self, shift):
-        abc = {}
+    return message.translate(abc)
 
-        for alphabet in self.alphabets:
-            t_shift = shift % len(alphabet)
-            abc.update(str.maketrans(alphabet, alphabet[t_shift:] + alphabet[:t_shift]))
 
-        return self.message.translate(abc)
+def decrypt(message, shift):
+    abc = {}
 
-    def decrypt(self, shift):
-        abc = {}
+    for alphabet in default_alphabets:
+        shift %= len(alphabet)
+        abc.update(str.maketrans(alphabet[shift:] + alphabet[:shift], alphabet))
 
-        for alphabet in self.alphabets:
-            t_shift = shift % len(alphabet)
-            abc.update(str.maketrans(alphabet[t_shift:] + alphabet[:t_shift], alphabet))
-
-        return self.message.translate(abc)
-
-# print(Caesar('This message was encrypted using Caesar Cipher (shift is 10).').encrypt(10))
+    return message.translate(abc)

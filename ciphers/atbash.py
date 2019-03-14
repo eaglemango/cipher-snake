@@ -3,28 +3,19 @@ default_alphabets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
                      "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"]
 
 
-class Cipher:
-    def __init__(self, message, alphabets=None):
-        if alphabets is None:
-            alphabets = default_alphabets
+def encrypt(message):
+    abc = {}
 
-        self.message = message
-        self.alphabets = alphabets
+    for alphabet in default_alphabets:
+        abc.update(str.maketrans(alphabet, alphabet[::-1]))
 
-    def encrypt(self):
-        abc = {}
+    return message.translate(abc)
 
-        for alphabet in self.alphabets:
-            abc.update(str.maketrans(alphabet, alphabet[::-1]))
 
-        return self.message.translate(abc)
+def decrypt(message):
+    abc = {}
 
-    def decrypt(self):
-        abc = {}
+    for alphabet in default_alphabets:
+        abc.update(str.maketrans(alphabet[::-1], alphabet))
 
-        for alphabet in self.alphabets:
-            abc.update(str.maketrans(alphabet[::-1], alphabet))
-
-        return self.message.translate(abc)
-
-# print(Atbash('This message was encrypted using atbash.').encrypt())
+    return message.translate(abc)
