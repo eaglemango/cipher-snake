@@ -29,6 +29,8 @@ if __name__ == "__main__":
     result = ""
     if args.input_file is None:
         text = input("Input text: ")
+    else:
+        text = open(args.input_file).read()
 
     if args.action == "encrypt":
         if book[args.cipher].need_key:
@@ -44,3 +46,5 @@ if __name__ == "__main__":
 
     if args.output_file is None:
         print("Output text:", result)
+    else:
+        open(args.output_file, "w").write(result)
