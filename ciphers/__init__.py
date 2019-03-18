@@ -1,1 +1,1 @@
-__all__ = ["atbash", "caesar", "vigenere"]
+__all__ = ["atbash", "caesar", "vigenere", "vernam"]
