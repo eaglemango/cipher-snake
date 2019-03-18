@@ -1,7 +1,7 @@
 cipher_name = "vernam"
 actions = ["encrypt", "decrypt"]
 need_key = True
-default_alphabets = []  # any available symbols in python
+default_alphabets = []  # any available symbols in python except ruining terminal session
 
 
 def encrypt(message, key):
