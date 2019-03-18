@@ -18,11 +18,7 @@ if __name__ == "__main__":
         exit(0)
 
     if args.action not in book[args.cipher].actions:
-        print("Sorry, but I can't " + args.action + " using " + args.cipher)
-        exit(0)
-
-    if book[args.cipher].need_key and args.key is None:
-        print("Sorry, but " + args.cipher + " needs a key to " + args.action)
+        print("Sorry, but I can't " + args.action + " " + args.cipher)
         exit(0)
 
     text = ""
@@ -33,16 +29,27 @@ if __name__ == "__main__":
         text = open(args.input_file).read()
 
     if args.action == "encrypt":
+        if book[args.cipher].need_key and args.key is None:
+            print("Sorry, but " + args.cipher + " needs a key to " + args.action)
+            exit(0)
+
         if book[args.cipher].need_key:
             result = book[args.cipher].encrypt(text, args.key)
         else:
             result = book[args.cipher].encrypt(text)
 
     if args.action == "decrypt":
+        if book[args.cipher].need_key and args.key is None:
+            print("Sorry, but " + args.cipher + " needs a key to " + args.action)
+            exit(0)
+
         if book[args.cipher].need_key:
             result = book[args.cipher].decrypt(text, args.key)
         else:
             result = book[args.cipher].decrypt(text)
+
+    if args.action == "crack":
+        result = book[args.cipher].crack(text)
 
     if args.output_file is None:
         print("Output text:", result)
