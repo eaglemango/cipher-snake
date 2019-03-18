@@ -1,2 +1,3 @@
-# Cipher Snake
-Cryptography Toolkit for analysing, encrypting and decrypting texts.
+# WARNING
+
+Код находится в ветке dev
