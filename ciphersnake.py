@@ -14,11 +14,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.cipher not in book:
-        print("Sorry, but " + args.cipher + " is something I don't know")
+        print("Sorry, but {0} is something I don't know".format(args.cipher))
         exit(0)
 
     if args.action not in book[args.cipher].actions:
-        print("Sorry, but I can't " + args.action + " " + args.cipher)
+        print("Sorry, but I can't {0} {1}".format(args.action, args.cipher))
         exit(0)
 
     text = ""
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     if args.action == "encrypt":
         if book[args.cipher].need_key and args.key is None:
-            print("Sorry, but " + args.cipher + " needs a key to " + args.action)
+            print("Sorry, but {0} needs a key to {1}".format(args.cipher, args.action))
             exit(0)
 
         if book[args.cipher].need_key:
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     if args.action == "decrypt":
         if book[args.cipher].need_key and args.key is None:
-            print("Sorry, but " + args.cipher + " needs a key to " + args.action)
+            print("Sorry, but {0} needs a key to {1}".format(args.cipher, args.action))
             exit(0)
 
         if book[args.cipher].need_key:
