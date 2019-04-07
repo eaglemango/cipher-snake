@@ -1,4 +1,5 @@
 import argparse
+import const
 from cipherbook import book
 
 parser = argparse.ArgumentParser()
@@ -12,11 +13,11 @@ parser.add_argument("-o", "--output-file", default=None,
 
 
 def encrypt_action():
-    if book[args.cipher].need_key and args.key is None:
+    if book[args.cipher].NEED_KEY and args.key is None:
         print("Sorry, but {0} needs a key to {1}".format(args.cipher, args.action))
         exit(0)
 
-    if book[args.cipher].need_key:
+    if book[args.cipher].NEED_KEY:
         temp_result = book[args.cipher].encrypt(text, args.key)
     else:
         temp_result = book[args.cipher].encrypt(text)
@@ -25,11 +26,11 @@ def encrypt_action():
 
 
 def decrypt_action():
-    if book[args.cipher].need_key and args.key is None:
+    if book[args.cipher].NEED_KEY and args.key is None:
         print("Sorry, but {0} needs a key to {1}".format(args.cipher, args.action))
         exit(0)
 
-    if book[args.cipher].need_key:
+    if book[args.cipher].NEED_KEY:
         temp_result = book[args.cipher].decrypt(text, args.key)
     else:
         temp_result = book[args.cipher].decrypt(text)
@@ -43,9 +44,9 @@ def crack_action():
 
 
 actions = {
-    "encrypt": encrypt_action,
-    "decrypt": decrypt_action,
-    "crack": crack_action
+    const.Actions.ENCRYPT: encrypt_action,
+    const.Actions.DECRYPT: decrypt_action,
+    const.Actions.CRACK: crack_action
 }
 
 if __name__ == "__main__":
@@ -64,7 +65,7 @@ if __name__ == "__main__":
             text = input_.read()
 
     try:
-        result = actions[args.action]()
+        result = actions[const.Actions(args.action)]()
     except KeyError:
         print("Sorry, but I can't {0} {1}".format(args.action, args.cipher))
         exit(0)

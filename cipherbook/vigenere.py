@@ -1,8 +1,9 @@
-cipher_name = "vigenere"
-actions = ["encrypt", "decrypt"]
-need_key = True
-default_alphabets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                     "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"]
+import const
+
+CIPHER_NAME = "vigenere"
+ACTIONS = [const.Actions.ENCRYPT, const.Actions.DECRYPT]
+NEED_KEY = True
+DEFAULT_ALPHABETS = [const.LATIN_LOWERCASE, const.LATIN_UPPERCASE, const.CYRILLIC_LOWERCASE, const.CYRILLIC_UPPERCASE]
 
 
 def encrypt(message, keyword):
@@ -10,7 +11,7 @@ def encrypt(message, keyword):
 
     shifts = []
     for letter in keyword:
-        for alphabet in default_alphabets:
+        for alphabet in DEFAULT_ALPHABETS:
             try:
                 shifts.append(alphabet.index(letter))
 
@@ -20,7 +21,7 @@ def encrypt(message, keyword):
 
     j = 0
     for letter in message:
-        for alphabet in default_alphabets:
+        for alphabet in DEFAULT_ALPHABETS:
             try:
                 i = alphabet.index(letter)
 
@@ -43,7 +44,7 @@ def decrypt(message, keyword):
 
     shifts = []
     for letter in keyword:
-        for alphabet in default_alphabets:
+        for alphabet in DEFAULT_ALPHABETS:
             try:
                 shifts.append(alphabet.index(letter))
 
@@ -53,7 +54,7 @@ def decrypt(message, keyword):
 
     j = 0
     for letter in message:
-        for alphabet in default_alphabets:
+        for alphabet in DEFAULT_ALPHABETS:
             try:
                 i = alphabet.index(letter)
 

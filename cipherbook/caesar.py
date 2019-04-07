@@ -1,8 +1,9 @@
-cipher_name = "caesar"
-actions = ["encrypt", "decrypt", "crack"]
-need_key = True
-default_alphabets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                     "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"]
+import const
+
+CIPHER_NAME = "caesar"
+ACTIONS = [const.Actions.ENCRYPT, const.Actions.DECRYPT, const.Actions.CRACK]
+NEED_KEY = True
+DEFAULT_ALPHABETS = [const.LATIN_LOWERCASE, const.LATIN_UPPERCASE, const.CYRILLIC_LOWERCASE, const.CYRILLIC_UPPERCASE]
 
 
 def encrypt(message, shift):
@@ -10,7 +11,7 @@ def encrypt(message, shift):
 
     shift = int(shift)
 
-    for alphabet in default_alphabets:
+    for alphabet in DEFAULT_ALPHABETS:
         shift %= len(alphabet)
         abc.update(str.maketrans(alphabet, alphabet[shift:] + alphabet[:shift]))
 
@@ -22,7 +23,7 @@ def decrypt(message, shift):
 
     shift = int(shift)
 
-    for alphabet in default_alphabets:
+    for alphabet in DEFAULT_ALPHABETS:
         shift %= len(alphabet)
         abc.update(str.maketrans(alphabet[shift:] + alphabet[:shift], alphabet))
 
