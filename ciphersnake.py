@@ -15,7 +15,7 @@ parser.add_argument("-o", "--output-file", default=None,
 def encrypt_action():
     if book[args.cipher].NEED_KEY and args.key is None:
         print("Sorry, but {0} needs a key to {1}".format(args.cipher, args.action))
-        exit(0)
+        exit()
 
     if book[args.cipher].NEED_KEY:
         temp_result = book[args.cipher].encrypt(text, args.key)
@@ -28,7 +28,7 @@ def encrypt_action():
 def decrypt_action():
     if book[args.cipher].NEED_KEY and args.key is None:
         print("Sorry, but {0} needs a key to {1}".format(args.cipher, args.action))
-        exit(0)
+        exit()
 
     if book[args.cipher].NEED_KEY:
         temp_result = book[args.cipher].decrypt(text, args.key)
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     if args.cipher not in book:
         print("Sorry, but {0} is something I don't know".format(args.cipher))
-        exit(0)
+        exit()
 
     text = ""
     result = ""
@@ -68,7 +68,7 @@ if __name__ == "__main__":
         result = actions[const.Actions(args.action)]()
     except KeyError:
         print("Sorry, but I can't {0} {1}".format(args.action, args.cipher))
-        exit(0)
+        exit()
 
     if args.output_file is None:
         print("Output text:", result)
