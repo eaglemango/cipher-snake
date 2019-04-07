@@ -97,7 +97,7 @@ def crack(message):
     possible_shift = 0
     min_difference = 100000
 
-    for shift in range(33):
+    for shift in range(max([len(alphabet) for alphabet in DEFAULT_ALPHABETS])):
         temp_difference = 0
 
         temp_message = decrypt(message, shift).lower()
